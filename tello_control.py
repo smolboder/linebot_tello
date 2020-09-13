@@ -99,13 +99,13 @@ def flip(mtext):
     
 @check_connectORnot
 def rotate(mtext):
-    if mtext=='向右轉360度':
+    if mtext=='順時鐘旋轉360':
         me.rotate_clockwise(360)
         return '成功收到向右轉圈指令,準備右轉圈一圈'
-    elif mtext=='向右轉180度':
+    elif mtext=='順時鐘旋轉180':
         me.rotate_clockwise(180)
         return '成功收到右轉指令,準備右轉180度'
-    elif mtext=='向左轉360度':
+    elif mtext=='逆時針旋轉360':
         me.rotate_clockwise(-360)
         return '成功收到左轉指令,準備左轉一圈'
     else:
