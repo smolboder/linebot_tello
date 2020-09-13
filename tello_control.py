@@ -67,10 +67,10 @@ def move(mtext):
     elif mtext=='後退':
         me.move_back(30)
         return '成功收到後退指令,準備後退'
-    elif mtext=='向左':
+    elif mtext=='左平移':
         me.move_left(30)
         return '成功收到後退指令,準備後退'
-    elif mtext=='向右':
+    elif mtext=='右平移':
         me.move_right(30)
         return '成功收到向右指令,準備向右'
     elif mtext=='向上':
@@ -82,14 +82,14 @@ def move(mtext):
 
     
 @check_connectORnot
-def move(mtext):
-    if mtext=='前翻滾':
+def flip(mtext):
+    if mtext=='前滾翻':
         me.flip_forward()
         return '成功收到向前翻滾指令,準備向前翻滾'
-    elif mtext=='後翻滾':
+    elif mtext=='後滾翻':
         me.flip_back()
         return '成功收到向後翻滾指令,準備向後翻滾'
-    elif mtext=='左翻滾':
+    elif mtext=='左滾翻':
         me.flip_left()
         return '成功收到向左指令,準備向左翻滾'
     else:
