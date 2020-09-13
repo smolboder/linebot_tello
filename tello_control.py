@@ -45,12 +45,14 @@ def check_connectORnot(func):
 
 @check_connectORnot
 def take_off():
+    """起飛"""
     me.takeoff()
     return '成功收到起飛指令,準備起飛'
 
 
 @check_connectORnot
 def land():
+    """降落"""
     global ifconnect
     me.land()
     ifconnect = False
@@ -58,89 +60,59 @@ def land():
 
 
 @check_connectORnot
-def forward():
-    me.move_forward(30)
-    return '成功收到前進指令,準備前進'
+def move(mtext):
+    if mtext=='前進':
+        me.move_forward(30)
+        return '成功收到前進指令,準備前進'
+    elif mtext=='後退':
+        me.move_back(30)
+        return '成功收到後退指令,準備後退'
+    elif mtext=='向左':
+        me.move_left(30)
+        return '成功收到後退指令,準備後退'
+    elif mtext=='向右':
+        me.move_right(30)
+        return '成功收到向右指令,準備向右'
+    elif mtext=='向上':
+        me.move_up(50)
+        return '成功收到上升指令,準備上升'
+    else:
+        me.move_down(50)
+        return '成功收到下降指令,準備下降'  
 
-
+    
 @check_connectORnot
-def back():
-    me.move_back(30)
-    return '成功收到後退指令,準備後退'
-
-
+def move(mtext):
+    if mtext=='前翻滾':
+        me.flip_forward()
+        return '成功收到向前翻滾指令,準備向前翻滾'
+    elif mtext=='後翻滾':
+        me.flip_back()
+        return '成功收到向後翻滾指令,準備向後翻滾'
+    elif mtext=='左翻滾':
+        me.flip_left()
+        return '成功收到向左指令,準備向左翻滾'
+    else:
+        me.flip_right()
+        return '成功收到向右指令,準備向右翻滾'
+    
+    
 @check_connectORnot
-def left():
-    me.move_left(30)
-    return '成功收到向左指令,準備向左'
+def rotate(mtext):
+    if mtext=='向右轉360度':
+        me.rotate_clockwise(360)
+        return '成功收到向右轉圈指令,準備右轉圈一圈'
+    elif mtext=='向右轉180度':
+        me.rotate_clockwise(180)
+        return '成功收到右轉指令,準備右轉180度'
+    elif mtext=='向左轉360度':
+        me.rotate_clockwise(-360)
+        return '成功收到左轉指令,準備左轉一圈'
+    else:
+        me.rotate_clockwise(-180)
+        return '成功收到向左轉圈指令,準備左轉180度'
 
-
-@check_connectORnot
-def right():
-    me.move_right(30)
-    return '成功收到向右指令,準備向右'
-
-
-@check_connectORnot
-def up():
-    me.move_up(50)
-    return '成功收到上升指令,準備上升'
-
-
-@check_connectORnot
-def down():
-    me.move_down(50)
-    return '成功收到下降指令,準備下降'
-
-
-@check_connectORnot
-def flipFoward():
-    me.flip_forward()
-    return '成功收到向前翻滾指令,準備向前翻滾'
-
-
-@check_connectORnot
-def flipBack():
-    me.flip_back()
-    return '成功收到向後翻滾指令,準備向後翻滾'
-
-
-@check_connectORnot
-def flipLeft():
-    me.flip_left()
-    return '成功收到向左指令,準備向左翻滾'
-
-
-@check_connectORnot
-def flipRight():
-    me.flip_right()
-    return '成功收到向右指令,準備向右翻滾'
-
-
-@check_connectORnot
-def rotate_clockwise_circle():
-    me.rotate_clockwise(360)
-    return '成功收到向右轉圈指令,準備右轉圈一圈'
-
-
-@check_connectORnot
-def rotate_clockwise_half_circle():
-    me.rotate_clockwise(180)
-    return '成功收到右轉指令,準備右轉180度'
-
-
-@check_connectORnot
-def rotate_unclockwise_circle():
-    me.rotate_clockwise(-360)
-    return '成功收到左轉指令,準備左轉一圈'
-
-
-@check_connectORnot
-def rotate_unclockwise_half_circle():
-    me.rotate_clockwise(-180)
-    return '成功收到向左轉圈指令,準備左轉180度'
-
-
+    
 def Send_Text(event, selections):
     """文字回應"""
     F = quickReply(selections)
