@@ -35,23 +35,25 @@ def show_battery():
 
 
 def check_connectORnot(func):
-    def inner():
+    """check if it's connecting to tello"""
+    def inner(mtext=None):
         global ifconnect
         if not ifconnect:
             return '請先按1連接tello'
-        return func()
+        return func(mtext)
+
     return inner
 
 
 @check_connectORnot
-def take_off():
+def take_off(*aggs):
     """起飛"""
     me.takeoff()
     return '成功收到起飛指令,準備起飛'
 
 
 @check_connectORnot
-def land():
+def land(*aggs):
     """降落"""
     global ifconnect
     me.land()
@@ -61,58 +63,58 @@ def land():
 
 @check_connectORnot
 def move(mtext):
-    if mtext=='前進':
+    if mtext == '前進':
         me.move_forward(30)
         return '成功收到前進指令,準備前進'
-    elif mtext=='後退':
+    elif mtext == '後退':
         me.move_back(30)
         return '成功收到後退指令,準備後退'
-    elif mtext=='左平移':
+    elif mtext == '左平移':
         me.move_left(30)
         return '成功收到後退指令,準備後退'
-    elif mtext=='右平移':
+    elif mtext == '右平移':
         me.move_right(30)
         return '成功收到向右指令,準備向右'
-    elif mtext=='向上':
+    elif mtext == '向上':
         me.move_up(50)
         return '成功收到上升指令,準備上升'
     else:
         me.move_down(50)
-        return '成功收到下降指令,準備下降'  
+        return '成功收到下降指令,準備下降'
 
-    
+
 @check_connectORnot
 def flip(mtext):
-    if mtext=='前滾翻':
+    if mtext == '前滾翻':
         me.flip_forward()
         return '成功收到向前翻滾指令,準備向前翻滾'
-    elif mtext=='後滾翻':
+    elif mtext == '後滾翻':
         me.flip_back()
         return '成功收到向後翻滾指令,準備向後翻滾'
-    elif mtext=='左滾翻':
+    elif mtext == '左滾翻':
         me.flip_left()
         return '成功收到向左指令,準備向左翻滾'
     else:
         me.flip_right()
         return '成功收到向右指令,準備向右翻滾'
-    
-    
+
+
 @check_connectORnot
 def rotate(mtext):
-    if mtext=='順時鐘旋轉360':
+    if mtext == '順時鐘旋轉360':
         me.rotate_clockwise(360)
         return '成功收到向右轉圈指令,準備右轉圈一圈'
-    elif mtext=='順時鐘旋轉180':
+    elif mtext == '順時鐘旋轉180':
         me.rotate_clockwise(180)
         return '成功收到右轉指令,準備右轉180度'
-    elif mtext=='逆時針旋轉360':
+    elif mtext == '逆時針旋轉360':
         me.rotate_clockwise(-360)
         return '成功收到左轉指令,準備左轉一圈'
     else:
         me.rotate_clockwise(-180)
         return '成功收到向左轉圈指令,準備左轉180度'
 
-    
+
 def Send_Text(event, selections):
     """文字回應"""
     F = quickReply(selections)
