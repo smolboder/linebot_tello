@@ -1,4 +1,3 @@
-import cv2 as cv
 from djitellopy import Tello
 from linebot.models import QuickReplyButton, MessageAction, TextSendMessage, QuickReply
 
